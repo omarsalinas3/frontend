@@ -1,30 +1,62 @@
-/* Estilos generales */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background: url('https://img.freepik.com/vector-gratis/vector-fondo-estampado-medico-verde_53876-169038.jpg') no-repeat center center fixed;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
   color: #333;
+  background-color: #f4f7f9;
+  margin: 0;
+  padding: 20px;
+}
+
+.dashboard-container {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 20px;
 }
 
 .dashboard {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
   padding: 20px;
-  max-width: 600px;
-  width: 100%;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-h2 {
-  text-align: center;
-  color: #4CAF50;
+h2, h3 {
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filtros label {
+  font-weight: bold;
+}
+
+.filtros input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.filtros button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filtros button:hover {
+  background-color: #2980b9;
 }
 
 .citas {
@@ -33,96 +65,147 @@ h2 {
 }
 
 .citas li {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  margin-bottom: 10px;
+  background-color: #ecf0f1;
+  margin-bottom: 15px;
   padding: 15px;
-  border-radius: 5px;
-  position: relative;
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+
+.citas li:hover {
+  transform: translateY(-3px);
 }
 
 .citas li.pendiente {
-  border-left: 5px solid #f39c12;
+  border-left: 5px solid #e74c3c;
 }
 
 .citas li.confirmada {
-  border-left: 5px solid #27ae60;
+  border-left: 5px solid #2ecc71;
 }
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  cursor: pointer;
+.citas button {
   margin-top: 10px;
-  display: inline-block;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #45a049;
+.citas button:first-of-type {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.citas button:first-of-type:hover {
+  background-color: #27ae60;
+}
+
+.ver-historial-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+.ver-historial-btn:hover {
+  background-color: #2980b9;
 }
 
 .finalizar-cita {
-  background: #ffffff;
-  border: 5px solid #ddd;
-  padding: 30px;
-  border-radius: 20px;
-  margin-top: 50px;
+  flex: 0 0 400px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  align-self: flex-start;
+  position: sticky;
+  top: 20px;
 }
 
-label {
+.finalizar-cita form div {
+  margin-bottom: 20px;
+}
+
+.finalizar-cita label {
   display: block;
-  margin-bottom: 5px;
-  color: #555;
+  margin-bottom: 8px;
+  font-weight: bold;
 }
 
-textarea {
+.finalizar-cita textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 100px;
 }
 
-textarea:focus {
-  border-color: #66afe9;
-  outline: none;
+.finalizar-cita button[type="submit"] {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
 }
 
-button[type="submit"] {
-  background-color: #4CAF50;
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+.finalizar-cita button[type="submit"]:hover {
+  background-color: #27ae60;
 }
 
-button[type="submit"]:hover {
-  background-color: #45a049;
+.modal-backdrop {
+  display: none;
 }
 
-/* Estilos responsivos */
-@media (max-width: 600px) {
-  .dashboard {
-    margin: 20px;
-    padding: 15px;
+@media (max-width: 1024px) {
+  .dashboard-container {
+    flex-direction: column;
   }
-  
-  .citas li {
+
+  .finalizar-cita {
+    flex: none;
+    width: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    max-width: 95%;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+
+  .modal-backdrop {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
     padding: 10px;
   }
-  
-  textarea {
-    padding: 8px;
+
+  .filtros {
+    flex-direction: column;
   }
-  
-  button {
-    padding: 8px 12px;
+
+  .filtros input[type="date"],
+  .filtros button {
+    width: 100%;
   }
-  
-  button[type="submit"] {
+
+  .citas li {
     padding: 10px;
   }
 }

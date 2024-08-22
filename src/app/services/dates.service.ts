@@ -7,6 +7,7 @@ import { Citas } from '../models/Citas';
 
 @Injectable({
   providedIn: 'root'
+
 })
 export class DatesService {
   // API_URI = 'http://localhost:3000  para frontend
@@ -185,4 +186,13 @@ export class DatesService {
       catchError(this.handleError)
     );
   }
+  
+  
+  actualizarHistorialMedico(historial: any): Observable<any> {
+    return this.http.put(`${this.API_URI}/historial-medico/${historial.id}`, historial).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  
 }

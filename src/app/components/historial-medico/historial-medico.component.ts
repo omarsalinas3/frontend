@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatesService } from '../../services/dates.service';
-import { Router } from '@angular/router'; // Importa Router si necesitas redirigir
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-historial-medico',
@@ -49,7 +49,6 @@ export class HistorialMedicoComponent implements OnInit {
       }
     );
   }
-
   formatearFecha(fecha: string): string {
     const date = new Date(fecha);
     return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;

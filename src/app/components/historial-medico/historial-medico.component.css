@@ -2,13 +2,13 @@ body {
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
   color: #333;
-  background-color: #f4f4f4;
+  background-color: #f4f7f9;
   margin: 0;
   padding: 0;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -17,152 +17,140 @@ header {
   background-color: #3498db;
   color: white;
   text-align: center;
-  padding: 1rem;
-  border-radius: 5px 5px 0 0;
+  padding: 20px 0;
+  margin-bottom: 30px;
 }
 
 h1 {
   margin: 0;
+  font-size: 2.5em;
 }
 
-main {
-  background-color: white;
-  padding: 20px;
-  border-radius: 0 0 5px 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.error-message {
+.error-message, .no-registros {
   background-color: #e74c3c;
   color: white;
-  padding: 10px;
+  padding: 15px;
   border-radius: 5px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .no-registros {
-  text-align: center;
-  color: #7f8c8d;
-  font-style: italic;
+  background-color: #f39c12;
 }
 
 .registro-medico {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
   overflow: hidden;
 }
 
 .registro-medico h2 {
-  background-color: #2ecc71;
+  background-color: #2c3e50;
   color: white;
   margin: 0;
-  padding: 10px;
+  padding: 15px;
+  font-size: 1.5em;
 }
 
-.registro-info {
-  background-color: #ecf0f1;
-  padding: 10px;
+.registro-info, .registro-detalles {
+  padding: 20px;
 }
 
-.registro-detalles {
-  padding: 10px;
+.registro-info p, .registro-detalles p {
+  margin: 10px 0;
 }
 
 .registro-detalles h3 {
-  color: #3498db;
-  border-bottom: 1px solid #ddd;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
   padding-bottom: 5px;
+  margin-top: 20px;
 }
 
-/* Estilo para los campos de texto (textarea) */
 textarea {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-family: inherit;
-  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   resize: vertical;
-  background-color: #f9f9f9;
-  transition: border-color 0.3s ease;
+  min-height: 100px;
+  margin-top: 10px;
 }
 
-textarea:focus {
-  border-color: #3498db;
-  outline: none;
+.registro-acciones {
+  background-color: #ecf0f1;
+  padding: 15px;
+  text-align: right;
 }
 
-/* Estilo para los botones */
 button {
-  padding: 10px 15px;
+  background-color: #3498db;
+  color: white;
   border: none;
-  border-radius: 5px;
+  padding: 10px 15px;
+  margin-left: 10px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  transform: translateY(-2px);
-}
-
-/* Botón Modificar */
-button:nth-child(1) {
-  background-color: #3498db;
-  color: white;
-  margin-right: 10px;
-}
-
-button:nth-child(1):hover {
   background-color: #2980b9;
 }
 
-/* Botón Guardar */
-button:nth-child(2) {
-  background-color: #2ecc71;
-  color: white;
-  margin-right: 10px;
-}
-
-button:nth-child(2):hover {
-  background-color: #27ae60;
-}
-
-/* Botón Cancelar */
-button:nth-child(3) {
-  background-color: #e67e22;
-  color: white;
-  margin-right: 10px;
-}
-
-button:nth-child(3):hover {
-  background-color: #d35400;
-}
-
-/* Botón Eliminar */
-button:nth-child(4) {
+button:last-child {
   background-color: #e74c3c;
-  color: white;
 }
 
-button:nth-child(4):hover {
+button:last-child:hover {
   background-color: #c0392b;
 }
 
-/* Adaptación para pantallas pequeñas */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .container {
     padding: 10px;
   }
 
-  .registro-medico {
-    margin-bottom: 15px;
+  header {
+    padding: 15px 0;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .registro-medico h2 {
+    font-size: 1.3em;
+  }
+
+  .registro-info, .registro-detalles, .registro-acciones {
+    padding: 15px;
   }
 
   button {
-    margin-bottom: 10px;
-    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8em;
+  }
+
+  .registro-medico h2 {
+    font-size: 1.2em;
+  }
+
+  .registro-acciones {
+    text-align: center;
+  }
+
+  button {
+    margin: 5px;
+    width: calc(50% - 10px);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DatesService } from '../../services/dates.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { DatesService } from '../../services/dates.service';
   templateUrl: './medico-dashboard.component.html',
   styleUrls: ['./medico-dashboard.component.css']
 })
-export class MedicoDashboardComponent implements OnInit {
+export class MedicoDashboardComponent implements OnInit, AfterViewInit {
   citas: any[] = [];
   citasFiltradas: any[] = [];
   citaSeleccionada: any = null;
@@ -24,6 +24,10 @@ export class MedicoDashboardComponent implements OnInit {
     this.cargarCitas();
   }
 
+  ngAfterViewInit() {
+    this.setupTextareaAutoResize();
+  }
+
   cargarCitas() {
     const medicoId = localStorage.getItem('medicoId');
     if (medicoId) {
@@ -35,7 +39,7 @@ export class MedicoDashboardComponent implements OnInit {
             fechaFormateada: cita.fechaFormateada || 'No disponible',
             horaFormateada: cita.horaFormateada || 'No disponible',
           }));
-          this.citasFiltradas = [...this.citas]; // Inicializa las citas filtradas con todas las citas
+          this.citasFiltradas = [...this.citas];
           console.log('Citas cargadas:', this.citas);
         },
         (error) => console.error('Error al cargar citas:', error)
@@ -60,6 +64,7 @@ export class MedicoDashboardComponent implements OnInit {
       tratamiento: '',
       observaciones: ''
     };
+    setTimeout(() => this.setupTextareaAutoResize(), 0);
   }
 
   finalizarCita() {
@@ -74,7 +79,7 @@ export class MedicoDashboardComponent implements OnInit {
         (response) => {
           console.log('Respuesta del servidor:', response);
           this.cargarCitas();
-          this.citaSeleccionada = null;
+          this.cerrarModal();
         },
         (error) => console.error('Error al finalizar cita:', error)
       );
@@ -93,7 +98,26 @@ export class MedicoDashboardComponent implements OnInit {
         });
       }
     } else {
-      this.citasFiltradas = [...this.citas]; // Si no se seleccionan fechas, mostrar todas las citas
+      this.citasFiltradas = [...this.citas];
     }
+  }
+
+  cerrarModal() {
+    this.citaSeleccionada = null;
+  }
+
+  setupTextareaAutoResize() {
+    const textareas = document.querySelectorAll('textarea');
+    textareas.forEach(textarea => {
+      textarea.addEventListener('input', this.autoResize);
+      // Inicializar el tamaño
+      this.autoResize({ target: textarea } as any);
+    });
+  }
+
+  autoResize(event: Event) {
+    const textarea = event.target as HTMLTextAreaElement;
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
   }
 }
